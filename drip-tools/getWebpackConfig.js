@@ -9,7 +9,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const postcssConfig = require('./postcssConfig');
 const CleanUpStatsPlugin = require('./utils/CleanUpStatsPlugin');
 
-const distFileBaseName = 'antd';
+const distFileBaseName = 'drip';
 
 const svgRegex = /\.svg(\?v=\d+\.\d+\.\d+)?$/;
 const svgOptions = {
@@ -163,7 +163,7 @@ Copyright 2017-present, ant-design-vue.
 All rights reserved.
       `),
       new WebpackBar({
-        name: '🚚  Ant Design Vue Tools',
+        name: '🚚  Drip Vue Tools',
         color: '#2f54eb',
       }),
       new CleanUpStatsPlugin(),

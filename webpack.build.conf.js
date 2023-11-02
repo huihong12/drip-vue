@@ -11,8 +11,8 @@ function ignoreMomentLocale(webpackConfig) {
 }
 
 function addLocales(webpackConfig) {
-  let packageName = 'antd-with-locales';
-  if (webpackConfig.entry['antd.min']) {
+  let packageName = 'drip-with-locales';
+  if (webpackConfig.entry['drip.min']) {
     packageName += '.min';
   }
   webpackConfig.entry[packageName] = './index-with-locales.js';

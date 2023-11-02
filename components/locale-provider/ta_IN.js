@@ -1,14 +1,5 @@
-import Pagination from '../vc-pagination/locale/ta_IN';
-import DatePicker from '../date-picker/locale/ta_IN';
-import TimePicker from '../time-picker/locale/ta_IN';
-import Calendar from '../calendar/locale/ta_IN';
-
 export default {
   locale: 'ta',
-  Pagination,
-  DatePicker,
-  TimePicker,
-  Calendar,
   // locales for all comoponents
   global: {
     placeholder: 'தேதியைத் தேர்ந்தெடுக்கவும்',
