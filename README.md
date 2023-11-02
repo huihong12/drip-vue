@@ -4,7 +4,7 @@
 
 <div align="center">
 
-[![npm package](https://img.shields.io/npm/v/drip.svg?style=flat-square)](https://www.npmjs.org/package/drip)
+[![npm package](https://img.shields.io/npm/v/drip-vue.svg?style=flat-square)](https://www.npmjs.org/package/drip-vue)
 
 </div>
 
