@@ -1,0 +1,92 @@
+// placeholder
+@import '../../style/themes/index';
+.@{drip-prefix}-tabs {
+  display: flex;
+  color: #666;
+  line-height: 1;
+  &.@{drip-prefix}-tabs-line {
+    .@{drip-prefix}-tabs-left li:not(.@{drip-prefix}-tabs-left-label) {
+      position: relative;
+      padding: 4px;
+      padding-top: 17px;
+      padding-bottom: 17px;
+      border-bottom: 2px solid transparent;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        margin-left: -5px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 4px solid transparent;
+        transition: all 0.25s;
+      }
+      &.@{drip-prefix}-tabs-selected {
+        border-bottom-color: @primary-color;
+        color: @primary-color;
+        z-index: 9;
+        &::before {
+          border-bottom-color: @primary-color;
+        }
+      }
+      &.@{drip-prefix}-tabs-left-label {
+        line-height: 18px;
+      }
+    }
+  }
+  &.@{drip-prefix}-tabs-block {
+    .@{drip-prefix}-tabs-left li:not(.@{drip-prefix}-tabs-left-label) {
+      padding: 4px;
+      &.@{drip-prefix}-tabs-selected {
+        padding: 4px;
+        background-color: rgba(@primary-color,0.1);
+        color: @primary-color;
+        border-radius: 2px;
+      }
+    }
+  }
+  .@{drip-prefix}-tabs-left {
+    flex: auto;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    li {
+      display: flex;
+      align-items: center;
+      margin: 0 25px;
+      cursor: pointer;
+      transition: all 0.25s;
+      margin-left: 0;
+      white-space: nowrap;
+      font-size: 14px;
+      .@{drip-prefix}-tabs-badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 16px;
+        height: 16px;
+        margin-left: 5px;
+        background: #ff3434;
+        border-radius: 100px;
+        color: #fff;
+        font-size: 12px;
+        padding: 0 4px;
+      }
+      &.@{drip-prefix}-tabs-left-label {
+        color: #666;
+        // padding-left: 20px;
+        margin: 0;
+        margin-right: 13px;
+      }
+    }
+  }
+  .@{drip-prefix}-tabs-right {
+    flex: none;
+    display: flex;
+    align-items: center;
+  }
+}
