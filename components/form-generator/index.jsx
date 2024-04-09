@@ -1,6 +1,6 @@
-import PropTypes from '../_util/vue-types';
-import { filterEmpty } from '../_util/props-util';
-import { initDefaultProps } from '../_util/props-util';
+import PropTypes from 'ant-design-vue/lib/_util/vue-types';
+import { filterEmpty } from 'ant-design-vue/lib/_util/props-util';
+import { initDefaultProps } from 'ant-design-vue/lib/_util/props-util';
 import Base from '../base';
 import FormItem, { formItemProps } from './FormItem';
 import FormGroup from './FormGroup';

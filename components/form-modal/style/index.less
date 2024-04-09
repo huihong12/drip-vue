@@ -1,0 +1,22 @@
+// placeholder
+@import '../../style/themes/index';
+.@{drip-prefix}-form-modal {
+  .ant-modal-content {
+    border-radius: 0;
+  }
+  &.fullscreen {
+    .ant-modal {
+      width: 100vw !important;
+    }
+    .ant-modal-body {
+      height: calc(100vh - 108px) !important;
+    }
+  }
+  .ant-modal {
+    padding-bottom: 0;
+  }
+  .ant-modal-body {
+    max-height: calc(100vh - 108px);
+    overflow-y: auto;
+  }
+}

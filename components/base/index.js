@@ -1,4 +1,4 @@
-import antDirective from '../_util/antDirective';
+import antDirective from 'ant-design-vue/lib/_util/antDirective';
 import clipboard from '../_util/clipboard'
 const base = {};
 let span = null;

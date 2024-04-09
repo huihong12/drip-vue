@@ -1,9 +1,9 @@
-import PropTypes from '../_util/vue-types';
+import PropTypes from 'ant-design-vue/lib/_util/vue-types';
 import * as moment from 'moment';
-import interopDefault from '../_util/interopDefault';
+import interopDefault from 'ant-design-vue/lib/_util/interopDefault';
 // import { changeConfirmLocale } from '../modal/locale';
 import Base from '../base';
-import warning from '../_util/warning';
+import warning from 'ant-design-vue/lib/_util/warning';
 // export interface Locale {
 //   locale: string;
 //   Pagination?: Object;
@@ -17,7 +17,7 @@ import warning from '../_util/warning';
 //   Select?: Object;
 //   Upload?: Object;
 // }
-export const ANT_MARK = 'internalMark';
+export const MARK = 'internalMark';
 function setMomentLocale(locale) {
   if (locale && locale.locale) {
     interopDefault(moment).locale(locale.locale);
@@ -27,14 +27,14 @@ function setMomentLocale(locale) {
 }
 
 const LocaleProvider = {
-  name: 'ALocaleProvider',
+  name: 'DripLocaleProvider',
   props: {
     locale: PropTypes.object.def(() => ({})),
-    _ANT_MARK__: PropTypes.string,
+    _MARK__: PropTypes.string,
   },
   data() {
     warning(
-      this._ANT_MARK__ === ANT_MARK,
+      this._MARK__ === MARK,
       'LocaleProvider',
       '`LocaleProvider` is deprecated. Please use `locale` with `ConfigProvider` instead',
     );

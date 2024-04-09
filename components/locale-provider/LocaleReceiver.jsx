@@ -1,4 +1,4 @@
-import PropTypes from '../_util/vue-types';
+import PropTypes from 'ant-design-vue/lib/_util/vue-types';
 import defaultLocaleData from './default';
 
 export default {

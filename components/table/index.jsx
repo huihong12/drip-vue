@@ -1,7 +1,7 @@
-import PropTypes from '../_util/vue-types';
 import { clone } from '../_util/clone';
-import { dateFormart } from '../_util/moment-util';
-import { initDefaultProps, getComponentFromProp } from '../_util/props-util';
+import PropTypes from 'ant-design-vue/lib/_util/vue-types';
+import { dateFormart } from 'ant-design-vue/lib/_util/moment-util';
+import { initDefaultProps, getComponentFromProp } from 'ant-design-vue/lib/_util/props-util';
 import Base from '../base';
 import FormGenerator from '../form-generator';
 import '../form-generator/style';
@@ -36,7 +36,8 @@ export const tableProps = initDefaultProps({
     pagination: {
       current: 1,
       pageSize: 10
-    }
+    },
+    searchForm: {}
   })),
   searchForm: PropTypes.object,
   table: PropTypes.object,
@@ -295,6 +296,7 @@ const Table = {
     },
     reset() {
       this.$emit('reset')
+      console.log(clone(this.defaultSearchParams))
       this.$emit('update:searchParams', clone(this.defaultSearchParams))
       this.formData = clone(this.defaultSearchParams.searchForm)
       this.fetchList(this.searchParams)

@@ -1,37 +1,60 @@
-import raf from 'raf';
-import getScroll from './getScroll';
-import { easeInOutCubic } from './easings';
+Math.easeInOutQuad = function(t, b, c, d) {
+  t /= d / 2
+  if (t < 1) {
+    return c / 2 * t * t + b
+  }
+  t--
+  return -c / 2 * (t * (t - 2) - 1) + b
+}
 
-// interface ScrollToOptions {
-//   /** Scroll container, default as window */
-//   getContainer?: () => HTMLElement | Window;
-//   /** Scroll end callback */
-//   callback?: () => any;
-//   /** Animation duration, default as 450 */
-//   duration?: number;
-// }
+// requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
+var requestAnimFrame = (function() {
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60) }
+})()
 
-export default function scrollTo(y, options = {}) {
-  const { getContainer = () => window, callback, duration = 450 } = options;
+/**
+ * Because it's so fucking difficult to detect the scrolling element, just move them all
+ * @param {number} amount
+ */
+function move(amount) {
+  document.documentElement.scrollTop = amount
+  document.body.parentNode.scrollTop = amount
+  document.body.scrollTop = amount
+}
 
-  const container = getContainer();
-  const scrollTop = getScroll(container, true);
-  const startTime = Date.now();
+function position() {
+  return document.documentElement.scrollTop || document.body.parentNode.scrollTop || document.body.scrollTop
+}
 
-  const frameFunc = () => {
-    const timestamp = Date.now();
-    const time = timestamp - startTime;
-    const nextScrollTop = easeInOutCubic(time > duration ? duration : time, scrollTop, y, duration);
-    if (container === window) {
-      window.scrollTo(window.pageXOffset, nextScrollTop);
+/**
+ * @param {number} to
+ * @param {number} duration
+ * @param {Function} callback
+ */
+export function scrollTo({to, duration, callback, root}) {
+  const start = position()
+  const change = to - start
+  const increment = 20
+  let currentTime = 0
+  duration = (typeof (duration) === 'undefined') ? 500 : duration
+  var animateScroll = function() {
+    // increment the time
+    currentTime += increment
+    // find the value with the quadratic in-out easing function
+    var val = Math.easeInOutQuad(currentTime, start, change, duration)
+    // move the document.body
+    move(val)
+    // do the animation unless its over
+    if (currentTime < duration) {
+      requestAnimFrame(animateScroll)
     } else {
-      container.scrollTop = nextScrollTop;
+      if (callback && typeof (callback) === 'function') {
+        // the animation is done so lets callback
+        callback()
+      }
     }
-    if (time < duration) {
-      raf(frameFunc);
-    } else if (typeof callback === 'function') {
-      callback();
-    }
-  };
-  raf(frameFunc);
+  }
+  animateScroll()
+  const root = typeof root === 'undefined' ? document.body : typeof root === 'string' ? document.querySelector(root) : root
+  root&&root.scrollTo({left:0,top:to,behavior:'smooth'})
 }

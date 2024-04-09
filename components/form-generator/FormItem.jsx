@@ -1,7 +1,7 @@
-import PropTypes from '../_util/vue-types';
-import { initDefaultProps,} from '../_util/props-util';
+import PropTypes from 'ant-design-vue/lib/_util/vue-types';
+import { initDefaultProps,} from 'ant-design-vue/lib/_util/props-util';
 import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
-import { filterEmpty } from '../_util/props-util';
+import { filterEmpty } from 'ant-design-vue/lib/_util/props-util';
 
 import Icon from 'ant-design-vue/lib/icon';
 import FormItem from 'ant-design-vue/lib/form-model/FormItem';

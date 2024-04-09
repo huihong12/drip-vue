@@ -1,5 +1,5 @@
-import PropTypes from '../_util/vue-types';
-import { initDefaultProps, getComponentFromProp } from '../_util/props-util';
+import PropTypes from 'ant-design-vue/lib/_util/vue-types';
+import { initDefaultProps, getComponentFromProp } from 'ant-design-vue/lib/_util/props-util';
 import Base from '../base';
 import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
 

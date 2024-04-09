@@ -1,9 +1,8 @@
 import Vue from 'vue';
-import PropTypes from '../_util/vue-types';
-import { filterEmpty, getComponentFromProp } from '../_util/props-util';
-import defaultRenderEmpty from './renderEmpty';
+import PropTypes from 'ant-design-vue/lib/_util/vue-types';
+import { filterEmpty } from 'ant-design-vue/lib/_util/props-util';
 import Base from '../base';
-import LocaleProvider, { ANT_MARK } from '../locale-provider';
+import LocaleProvider, { MARK } from '../locale-provider';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 
 function getWatch(keys = []) {
@@ -17,16 +16,11 @@ function getWatch(keys = []) {
 }
 
 const ConfigProvider = {
-  name: 'AConfigProvider',
+  name: 'DripConfigProvider',
   props: {
-    getPopupContainer: PropTypes.func,
     prefixCls: PropTypes.string,
-    renderEmpty: PropTypes.func,
-    csp: PropTypes.object,
-    autoInsertSpaceInButton: PropTypes.bool,
     locale: PropTypes.object,
-    pageHeader: PropTypes.object,
-    transformCellText: PropTypes.func,
+    fileUploadConfig: PropTypes.object
   },
   provide() {
     const _self = this;
@@ -34,8 +28,7 @@ const ConfigProvider = {
       data() {
         return {
           ..._self.$props,
-          getPrefixCls: _self.getPrefixCls,
-          renderEmpty: _self.renderEmptyComponent,
+          getPrefixCls: _self.getPrefixCls
         };
       },
     });
@@ -46,27 +39,19 @@ const ConfigProvider = {
   watch: {
     ...getWatch([
       'prefixCls',
-      'csp',
-      'autoInsertSpaceInButton',
-      'locale',
-      'pageHeader',
-      'transformCellText',
+      'fileUploadConfig',
+      'locale'
     ]),
   },
   methods: {
-    renderEmptyComponent(h, name) {
-      const renderEmpty =
-        getComponentFromProp(this, 'renderEmpty', {}, false) || defaultRenderEmpty;
-      return renderEmpty(h, name);
-    },
     getPrefixCls(suffixCls, customizePrefixCls) {
-      const { prefixCls = 'ant' } = this.$props;
+      const { prefixCls = 'drip' } = this.$props;
       if (customizePrefixCls) return customizePrefixCls;
       return suffixCls ? `${prefixCls}-${suffixCls}` : prefixCls;
     },
     renderProvider(legacyLocale) {
       return (
-        <LocaleProvider locale={this.locale || legacyLocale} _ANT_MARK__={ANT_MARK}>
+        <LocaleProvider locale={this.locale || legacyLocale} _MARK__={MARK}>
           {this.$slots.default ? filterEmpty(this.$slots.default)[0] : null}
         </LocaleProvider>
       );

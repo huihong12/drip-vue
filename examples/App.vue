@@ -16,6 +16,8 @@
       <template slot="right">123</template>
     </drip-tabs>
     {{current}} -->
+    <drip-file-upload v-model="fileList" mode="multiple" />
+    {{fileList}}
     <drip-table v-model="dataSource" :cache="cache" :table.sync="table" :toolbar="toolbar" :searchForm="searchForm" :searchParams.sync="searchParams" />
   </div>
 </template>
@@ -24,6 +26,7 @@
 export default {
     data() {
         return {
+          fileList: [],
           current: ['value'],
           options: [
             { label: 'label', value: 'value' },
@@ -136,8 +139,110 @@ export default {
                     {
                       label: '审核',
                       handler: row => {
-                        const data = JSON.parse(JSON.stringify(row))
-                        this.audit(data)
+                        // this.$filePreview({ url: 'https://slzx-chengc.oss-cn-shenzhen.aliyuncs.com/sljt-common/manual-store/%E9%94%82%E5%85%88%E7%94%9F%E5%B8%85%E5%87%8C%E8%BF%90%E7%BB%B4%E7%AB%AF-%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf', fileType: 'pdf' })
+                        // const data = JSON.parse(JSON.stringify(row))
+                        this.$formModal({
+                          actions: [
+                            {
+                              label: 'click',
+                              handler() {
+                                console.log(arguments)
+                              },
+                              show: true
+                            }
+                          ],
+                          formGenerator: {
+                            props: {
+                              value: {
+                                attr: {
+                                  'attr1': 'value',
+                                  'attra11': 'value'
+                                },
+                                attra: {}
+                              },
+                              formProfile: [
+                                {
+                                  formItem: {
+                                    prop: 'attr',
+                                    label: '',
+                                  },
+                                  field: {
+                                    tag: 'drip-form-group',
+                                    children: [
+                                      {
+                                        formItem: {
+                                          prop: 'attr1',
+                                          label: 'title',
+                                          helpLink: {
+                                            link: '...',
+                                            label: '111'
+                                          },
+                                          tips: {
+                                            type: 'text',
+                                            value: '333'
+                                          },
+                                          rules: [{ required: true, message: "请选择", trigger: "change" }]
+                                        },
+                                        field: {
+                                          tag: 'a-select',
+                                          options: [{label:'label',value:'value'},{label:'label1',value:'value1'}],
+                                        }
+                                      },
+                                      {
+                                        formItem: {
+                                          prop: 'attra11',
+                                          label: 'input',
+                                          helpLink: {
+                                            link: '...',
+                                            label: '111'
+                                          },
+                                          tips: {
+                                            type: 'text',
+                                            value: '333'
+                                          },
+                                          rules: [{ required: true, message: "请输入", trigger: "blur" }]
+                                        },
+                                        field: {
+                                          tag: 'a-input-number',
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  formItem: {
+                                    prop: 'attra',
+                                    label: '',
+                                    rules: [{ required: true, message: "请填写", trigger: "blur" }]
+                                  },
+                                  field: {
+                                    tag: 'drip-form-group',
+                                    children: [
+                                      {
+                                        formItem: {
+                                          prop: 'attra1',
+                                          label: 'input',
+                                          helpLink: {
+                                            link: '...',
+                                            label: '111'
+                                          },
+                                          tips: {
+                                            type: 'text',
+                                            value: '333'
+                                          },
+                                          rules: [{ required: true, message: "请选择", trigger: "blur" }]
+                                        },
+                                        field: {
+                                          tag: 'a-input',
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        })
                       },
                       show: true
                     }
@@ -273,7 +378,8 @@ export default {
             pagination: {
               current: 1,
               pageSize: 10
-            }
+            },
+            searchForm: {}
           },
           cache: { key: 'test' }
         };

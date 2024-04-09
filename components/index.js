@@ -27,6 +27,10 @@ import { default as FormGenerator } from './form-generator';
 
 import { default as Tabs } from './tabs';
 import { default as Table } from './table';
+import { default as FilePreview } from './file-preview';
+import { default as FileUpload } from './file-upload';
+import { default as formModal } from './form-modal';
+import { default as PDF } from './file-preview/pdf';
 
 
 const components = [
@@ -35,7 +39,11 @@ const components = [
   ConfigProvider,
   FormGenerator,
   Tabs,
-  Table
+  Table,
+  FilePreview,
+  FileUpload,
+  formModal,
+  PDF
 ];
 
 const install = function(Vue) {
@@ -43,7 +51,8 @@ const install = function(Vue) {
     Vue.use(component);
   });
 
-  // Vue.prototype.$message = message;
+  Vue.prototype.$filePreview = FilePreview.show;
+  Vue.prototype.$formModal = formModal.show;
 };
 
 /* istanbul ignore if */
@@ -59,7 +68,11 @@ export {
   ConfigProvider,
   FormGenerator,
   Tabs,
-  Table
+  Table,
+  FilePreview,
+  FileUpload,
+  formModal,
+  PDF
 };
 
 export default {
